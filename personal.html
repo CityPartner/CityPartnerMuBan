@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/common.js"></script>
+    <script src="js/jquery.js"></script>
+    <link href="style/reset.css" rel="stylesheet" type="text/css">
+    <link href="style/base.css" rel="stylesheet" type="text/css">
+    <link href="style/header.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style/personal.css"/>
+    <title>个人资料</title>
+</head>
+<body>
+<header><span onclick="javascript:history.go(-1)"></span>&nbsp;&nbsp;个人资料<b>保存</b></header>
+<form action="">
+<ul>
+    <li class="mt20"><span class="f26 g9">头像</span><div><img src="images/mine/head.png" alt="" style="width: 0.88rem;height: 0.88rem;"/><input type="file" name="file"  capture="camera"></div></li>
+    <li><span class="f26 g9">昵称</span><input type="text" value="LY031XA" class="f26 g32" disabled/></li>
+    <li id="sex"><span class="f26 g9">性别</span><input type="text" placeholder="请选择性别" class="f26 g32" disabled name="sex"/></li>
+    <li class="mt20"><span class="f26 g9">手机号</span><input type="text" value="18118122322" class="f26 g32" disabled/></li>
+    <li><span class="f26 g9">邮箱</span><input type="text" placeholder="请输入邮箱" class="f26 g32" disabled/></li>
+    <li class="mt20"><span class="f26 g9">个性签名</span><input type="text" placeholder="您还没有个性签名" class="f26 g32" disabled/></li>
+    <li><span class="f26 g9">所在地</span><input type="text" placeholder="请选择所在地" class="f26 g32" disabled/></li>
+    <li><span class="f26 g9">收货地址</span><input type="text" class="f26 g32" disabled/></li>
+    <li class="mt20"><span class="f26 g9">实名认证</span><input type="text" placeholder="请进行实名认证" class="f26 g32" disabled/></li>
+    <li><span class="f26 g9">修改密码</span><input type="text"  class="f26 g32" disabled/></li>
+</ul>
+</form>
+
+<button id="btn">退出登录</button>
+<div class="am-share">
+   <p class="share_btn">男</p>
+   <p class="share_btn">女</p>
+   <p class="share_btn">保密</p>
+</div>
+<div class="am-share1">
+    <h3 class="am-share-title1 tc">是否退出登录？</h3>
+    <div class="df jcsb aic"><button class="share_btn1 yes">是</button><button class="share_btn1">否</button></div>
+</div>
+<script>
+    $(function(){
+    function toshare(){
+        $(".am-share").css("display","block");
+        if($(".sharebg").length>0){
+            $(".sharebg").addClass("sharebg-active");
+        }else{
+            $("body").append('<div class="sharebg"></div>');
+            $(".sharebg").addClass("sharebg-active");
+        }
+        document.documentElement.style.overflow='hidden';
+        document.body.style.overflow='hidden';
+        $(".sharebg-active,.share_btn").click(function(){
+            if($(this).hasClass("share_btn")){
+                var value=$(this).html();
+                $("input[name='sex']").val(value);
+            }
+            $(".am-share").css("display","none");
+            setTimeout(function(){
+                $(".sharebg-active").removeClass("sharebg-active");
+                $(".sharebg").remove();
+            },300);
+            document.documentElement.style.overflow='auto';
+            document.body.style.overflow='auto';
+        })
+    }
+        $("#sex").click(function(e){
+        toshare();
+     });
+        $("#btn").click(function(){
+            var self=$(this);
+            $(".am-share1").css("display","block");
+            if($(".sharebg1").length>0){
+                $(".sharebg1").addClass("sharebg-active1");
+            }else{
+                $("body").append('<div class="sharebg1"></div>');
+                $(".sharebg1").addClass("sharebg-active1");
+            }
+            document.documentElement.style.overflow='hidden';
+            document.body.style.overflow='hidden';
+            $(".sharebg-active1,.share_btn1").click(function(){
+                if($(this).hasClass("yes")){
+                    self.parents("li").remove();
+                }
+                $(".am-share1").css("display","none");
+                setTimeout(function(){
+                    $(".sharebg-active1").removeClass("sharebg-active1");
+                    $(".sharebg1").remove();
+                },300);
+                document.documentElement.style.overflow='auto';
+                document.body.style.overflow='auto';
+            })
+        });
+    });
+</script>
+</body>
+</html>
